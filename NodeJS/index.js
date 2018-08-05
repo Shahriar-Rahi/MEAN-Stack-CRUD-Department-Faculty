@@ -8,7 +8,9 @@ var facultyController = require('./controllers/facultyController.js');
 var app = express();
 app.use(bodyParser.json());
 
-app.listen(3000, () => console.log('Server started at port : 3000'));
+const port = process.env.PORT || 8080;
+
+app.listen(port, () => console.log('Server started at port : 3000'));
 
 app.use('/departments', departmentController);
 app.use('/faculties', facultyController);

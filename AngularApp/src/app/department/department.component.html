@@ -1,0 +1,83 @@
+<div class="row">
+  <div class="col s12">
+    <div class="card">
+      <div class="card-content white-text">
+        <div class="row">
+          <div class="col s5">
+            <form #departmentForm="ngForm" (ngSubmit)="onSubmit(departmentForm)">
+              <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="departmentService.selectedDepartment._id">
+              <div class="row">
+                <div class="input-field col s12">
+                  <input type="text" name="name" #name="ngModel" [(ngModel)]="departmentService.selectedDepartment.name" placeholder="Enter department name" required>
+                  <label>Name :
+                    <label class="red-text">*</label>
+                  </label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s12">
+                  <input type="text" name="facultyName" #name="ngModel" [(ngModel)]="departmentService.selectedDepartment.facultyName" placeholder="Enter faculty name" required>
+                  <label>Faculty Name :</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s12">
+                  <input type="text" name="location" #name="ngModel" [(ngModel)]="departmentService.selectedDepartment.location" placeholder="Enter department location" required>
+                  <label>Location :</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s12">
+                  <input type="number" name="numberOfStud" #name="ngModel" [(ngModel)]="departmentService.selectedDepartment.numberOfStud" placeholder="Number Of Student" required>
+                  <label>Number of Student :</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s12">
+                  <input type="number" name="numberOfTea" #name="ngModel" [(ngModel)]="departmentService.selectedDepartment.numberOfTea" placeholder="Number of Teacher" required>
+                  <label>Number of Teacher :</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s12">
+                  <button class="btn btn-custom right" type="button" (click)="resetForm(departmentForm)">Reset</button>
+                  <button class="btn btn-custom right" type="submit" [disabled]="!departmentForm.valid">Submit</button>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="col s7">
+              <table class="responsive-table highlight">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Faculty Name</th>
+                      <th>Location</th>
+                      <th>Number Of Students</th>
+                      <th>Number Of Teachers</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tr *ngFor="let emp of departmentService.departments">
+                    <td>{{emp.name}}</td>
+                    <td>{{emp.facultyName}}</td>
+                    <td>{{emp.location}}</td>
+                    <td>{{emp.numberOfStud}}</td>
+                    <td>{{emp.numberOfTea}}</td>
+                    <td>
+                        <a class="action-btn" (click)="onEdit(emp)">
+                          <i class="material-icons">edit</i>
+                        </a>
+                        <a class="action-btn" (click)="onDelete(emp._id,departmentForm)">
+                          <i class="material-icons">delete</i>
+                        </a>
+                      </td>
+                  </tr>
+                </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
